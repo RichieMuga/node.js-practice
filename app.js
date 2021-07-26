@@ -1,20 +1,12 @@
-const { readFile,writeFile}=require('fs')
+//Event Emmiter with http module
+const http= require('http')
+//Using EventEmmiter API
+const server= http.createServer()
 
-readFile('./contents/poopooman.txt','utf-8',(err,result)=>{
-    if (err) {
-        console.log(err)
-        return
-    }
-    const first = result
-    readFile('./contents/first.txt','utf-8',(err,result)=>{
-    if (err) {
-        console.log(err)
-        return
-    }
-    const second = result
+server.on('request',(res,req)=>{
+    res.end('hello')
+})
 
-    writeFile('./contents/second.txt','utf-8',()=>{
-        console.log(`your content is ${first} and ${second}`)
-        })
-    })
+server.listen(5000,()=>{
+    console.log('port is listening')
 })
